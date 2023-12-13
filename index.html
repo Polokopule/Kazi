@@ -729,7 +729,7 @@ overflow: hidden;
         // Handle form submission
         document.getElementById('uploadMusicForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
-document.getElementById('w').innerHTML="Uploading your file...";
+document.getElementById("w").innerHTML="Uploading your file...";
             const owners = document.getElementById('owners').value;
             const MusicTitle = document.getElementById('MusicTitle').value;
             const MusicCover = document.getElementById('MusicCover').files[0];
@@ -745,7 +745,7 @@ document.getElementById('w').innerHTML="Uploading your file...";
 
             Promise.all([uploadCoverTask, uploadFileTask]).then(function() {
                 console.log('Both files uploaded successfully');
-document.getElementById('w').innerHTML="Audio & cover photo are uploaded...wait";
+document.getElementById("w").innerHTML="Audio & cover photo are uploaded...wait";
                 // Get download URLs of uploaded files
                 const coverURL = MusicCoverRef.getDownloadURL();
                 const fileURL = MusicFileRef.getDownloadURL();
@@ -774,7 +774,7 @@ document.getElementById('w').innerHTML="Audio & cover photo are uploaded...wait"
                 return database.ref().update(updates);
             }).then(function() {
                 console.log('Data inserted into the Realtime Database successfully');
-                document.getElementById('w').innerHTML="Thank you for using kazi";
+                document.getElementById("w").innerHTML="Thank you for using kazi";
                 alert('Music uploaded successfully!');
                 // Clear form fields after successful upload
                 document.getElementById('MusicTitle').value = '';
