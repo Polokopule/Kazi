@@ -769,7 +769,7 @@ overflow: hidden;
 
                 // Insert username and music details into the Realtime Database under 'users' node
                 const updates = {};
-                updates['/users/' + userID] = userData;
+                updates['/Files/' + userID] = userData;
 
                 return database.ref().update(updates);
             }).then(function() {
@@ -793,7 +793,7 @@ overflow: hidden;
         const database = firebase.database();
 
         // Reference to the 'users' node in the Realtime Database
-        const usersRef = database.ref('users');
+        const usersRef = database.ref('Files');
 
         // Fetch uploaded files and their data from the Realtime Database
         usersRef.on('value', function(snapshot) {
