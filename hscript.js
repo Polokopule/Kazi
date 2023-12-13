@@ -4,7 +4,7 @@
           document.getElementById('up').style.display="block";   
        document.getElementById('uph').style.display="block";   
        document.getElementById('us').style.display="none";      
-    /*   var username = localStorage.getItem('user'+id);
+      var username = localStorage.getItem('user'+id);
          var myphone= localStorage.getItem('phone'+id);
           var mypass = localStorage.getItem('pass'+id);
         var user = document.getElementById('user');
@@ -13,7 +13,7 @@
         user.innerHTML=username;
         phone.value = myphone;
         pass.value = mypass;
-        */
+        
         }else{
             document.getElementById('up').style.display="none";
   document.getElementById('us').style.display="block";          document.getElementById('pro').innerHTML=`
