@@ -18,7 +18,7 @@ localStorage.setItem("id",value.id); localStorage.setItem("user"+value.id,value.
                              $("#login").empty();
             $("#login").append("Account found");
       console.log('Account  found');
-      window.location.assign('home.html');                      
+      window.location.assign('index.html');                      
                             return false; // Exit the loop
                               }
                     });
