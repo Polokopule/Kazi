@@ -151,7 +151,7 @@ overflow: hidden;
          }
          .list{
              display: flex;
-             flex-direction: column;
+             flex-direction: column-reverse;
              gap:10px;
              padding-top:10px;
              padding-bottom: 100px;
@@ -477,6 +477,17 @@ overflow: hidden;
       .s{
           font-size:18px;
       }
+      #msg{
+          display: flex;
+          flex-direction: column;
+          gap:6px;
+          border-left:2px solid #3C8CE7;
+          padding:7px;
+         width:90%;
+      }
+      #msg > span{
+          font-size:11px;
+      }
           </style>
 </head>
 <body>
@@ -597,8 +608,13 @@ overflow: hidden;
         </label>
         <input type="submit" value="Upload" id="w"/>
     </form>      
+    <div id="msg">
+        <b>Uploading your music....</b>
+    <span>You can continue listening to other music while waiting for your song to be uploaded, you will get a Alert that says "Your music uploaded"after  few seconds</span>
                  
                      
+    </div>
+    
            </div>
        </div>
        </label>
@@ -683,6 +699,8 @@ overflow: hidden;
     
     
     <script>
+        document.getElementById('msg').style.display="none";
+        document.getElementById('uploadMusicForm').style.display="block";
         
       //localStorage.setItem("id","297362");
        const handleSearch = () => {
@@ -712,7 +730,7 @@ overflow: hidden;
         document.getElementById('searchInput').addEventListener('input', handleSearch);
     </script>
       <script>
-        document.getElementById('DisC').innerHTML="Getting New music....";
+        document.getElementById('DisC').innerHTML=" latest records...";
         
           const firebaseConfig = {
   apiKey: "AIzaSyDB_vVn7InTL3i4X3v9L28oyO6235mD7Po",
@@ -728,10 +746,11 @@ overflow: hidden;
 
         // Handle form submission
         document.getElementById('uploadMusicForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-var w  = document.getElementById("w");
-            w.value="Uploading your file...";
-            const owners = document.getElementById('owners').value;
+  document.getElementById('msg').style.display="flex";
+        document.getElementById('uploadMusicForm').style.display="none";
+   
+               event.preventDefault(); // Prevent default form submission
+       const owners = document.getElementById('owners').value;
             const MusicTitle = document.getElementById('MusicTitle').value;
             const MusicCover = document.getElementById('MusicCover').files[0];
             const MusicFile = document.getElementById('MusicFile').files[0];
@@ -746,8 +765,7 @@ var w  = document.getElementById("w");
 
             Promise.all([uploadCoverTask, uploadFileTask]).then(function() {
                 console.log('Both files uploaded successfully');
-//document.getElementById("w")
-    w.value="Audio & cover photo are uploaded...wait";
+document.getElementById('w').innerHTML="Audio & cover photo are uploaded...wait";
                 // Get download URLs of uploaded files
                 const coverURL = MusicCoverRef.getDownloadURL();
                 const fileURL = MusicFileRef.getDownloadURL();
@@ -776,8 +794,7 @@ var w  = document.getElementById("w");
                 return database.ref().update(updates);
             }).then(function() {
                 console.log('Data inserted into the Realtime Database successfully');
-               // document.getElementById("w")
-                    w.value="Thank you for using kazi";
+                
                 alert('Music uploaded successfully!');
                 // Clear form fields after successful upload
                 document.getElementById('MusicTitle').value = '';
